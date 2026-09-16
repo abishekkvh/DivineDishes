@@ -158,8 +158,7 @@ body {
 .done-button {
   position: absolute;
   bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 1rem;
   background-color: var(--brand-purple);
   color: white;
   border: none;
@@ -175,7 +174,7 @@ body {
 
 .done-button:hover {
   background-color: var(--brand-purple-light);
-  transform: translateX(-50%) translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .completed-overlay {
