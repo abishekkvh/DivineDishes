@@ -11,6 +11,7 @@ interface Food {
   foodDescription: string;
   imagePath: string;
   seriesImagePath: string;
+  imagePosition?: string;
   emoji?: string;
 }
 
@@ -25,6 +26,7 @@ const foods: Food[] = [
     foodDescription: "A comforting South Indian lentil stew with drumsticks and carrots.",
     imagePath: "/images/sambar.jpg",
     seriesImagePath: "/images/the-bear.jpg",
+    imagePosition: "top",
   },
   {
     id: "breaking-bad",
@@ -116,7 +118,12 @@ function App() {
                 <div className={`card-inner ${isFlipped ? 'flipped' : ''}`}>
                   {/* FRONT */}
                   <div className="card-front">
-                    <img src={food.seriesImagePath} alt={food.title} className="series-image" />
+                    <img 
+                      src={food.seriesImagePath} 
+                      alt={food.title} 
+                      className="series-image" 
+                      style={{ objectPosition: food.imagePosition || 'center' }}
+                    />
                   </div>
 
                   {/* BACK */}
