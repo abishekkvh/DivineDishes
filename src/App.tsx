@@ -10,6 +10,7 @@ interface Food {
   foodName: string;
   foodDescription: string;
   imagePath: string;
+  seriesImagePath: string;
   emoji?: string;
 }
 
@@ -23,6 +24,7 @@ const foods: Food[] = [
     foodName: "Traditional Sambar",
     foodDescription: "A comforting South Indian lentil stew with drumsticks and carrots.",
     imagePath: "/images/sambar.jpg",
+    seriesImagePath: "/images/the-bear.jpg",
   },
   {
     id: "breaking-bad",
@@ -33,6 +35,7 @@ const foods: Food[] = [
     foodName: "Paneer Butter Masala",
     foodDescription: "Soft paneer cubes in a rich, creamy, and mildly sweet tomato gravy.",
     imagePath: "/images/paneer-butter-masala.jpeg",
+    seriesImagePath: "/images/breaking-bad.jpeg",
     emoji: "🥘"
   },
   {
@@ -44,6 +47,7 @@ const foods: Food[] = [
     foodName: "Classic Biriyani",
     foodDescription: "Fluffy fragrant rice cooked with aromatic spices and love.",
     imagePath: "/images/biriyani.png",
+    seriesImagePath: "/images/game-of-thrones.jpeg",
     emoji: "🍛"
   },
   {
@@ -55,6 +59,7 @@ const foods: Food[] = [
     foodName: "Kaalan Gravy",
     foodDescription: "A traditional Kerala dish made with yam, plantains, coconut, and yogurt.",
     imagePath: "/images/kaalan.jpeg",
+    seriesImagePath: "/images/syanger-things.jpeg",
     emoji: "🍲"
   },
   {
@@ -66,6 +71,7 @@ const foods: Food[] = [
     foodName: "Mutta Kalaki",
     foodDescription: "A uniquely soft, semi-liquid scrambled egg mixed with flavorful curry.",
     imagePath: "/images/mutta-kalaki.jpeg",
+    seriesImagePath: "/images/friends.jpeg",
     emoji: "🍳"
   }
 ];
@@ -110,7 +116,7 @@ function App() {
                 <div className={`card-inner ${isFlipped ? 'flipped' : ''}`}>
                   {/* FRONT */}
                   <div className="card-front">
-                    <h2 className="show-title">{food.title}</h2>
+                    <img src={food.seriesImagePath} alt={food.title} className="series-image" />
                   </div>
 
                   {/* BACK */}
