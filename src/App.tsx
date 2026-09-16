@@ -190,11 +190,23 @@ const foods: Food[] = [
 
 function App() {
   const [flippedCards, setFlippedCards] = useState<Record<string, boolean>>({});
+  const [completedCards, setCompletedCards] = useState<Record<string, boolean>>({});
 
   const toggleFlip = (id: string) => {
+    // Don't flip if it's already completed
+    if (completedCards[id]) return;
+    
     setFlippedCards(prev => ({
       ...prev,
       [id]: !prev[id]
+    }));
+  };
+
+  const markAsDone = (e: React.MouseEvent, id: string) => {
+    e.stopPropagation();
+    setCompletedCards(prev => ({
+      ...prev,
+      [id]: true
     }));
   };
 
@@ -211,6 +223,7 @@ function App() {
         <div className="grid">
           {foods.map((food) => {
             const isFlipped = flippedCards[food.id];
+            const isCompleted = completedCards[food.id];
             
             const cardStyle = {
               '--theme-color': food.themeColor,
@@ -221,7 +234,7 @@ function App() {
             return (
               <div 
                 key={food.id} 
-                className="card-container" 
+                className={`card-container ${isCompleted ? 'completed' : ''}`}
                 style={cardStyle}
                 onClick={() => toggleFlip(food.id)}
               >
@@ -245,8 +258,17 @@ function App() {
                         <span className="food-emoji">{food.emoji}</span>
                       </div>
                     )}
+                    <button className="done-button" onClick={(e) => markAsDone(e, food.id)}>
+                      Done
+                    </button>
                   </div>
                 </div>
+                
+                {isCompleted && (
+                  <div className="completed-overlay">
+                    <span className="completed-text">Completed</span>
+                  </div>
+                )}
               </div>
             );
           })}
